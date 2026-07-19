@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 export default function Resume() {
+  // We now have two separate states for our two popup modals
   const [showCerts, setShowCerts] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
 
-  // Updated color mapping for better contrast
   const colors = {
-    pageBackground: '#768A96', // Deep Greyish-Blue for the outer page
-    cardBackground: '#FFFFFF', // Pure white for the CV document
+    pageBackground: '#768A96', 
+    cardBackground: '#FFFFFF', 
     dark: '#29353C',       
     primary: '#44576D',    
     secondary: '#768A96',  
@@ -47,7 +48,7 @@ export default function Resume() {
         ]
       }
     ],
-    projects: [
+    featuredProjects: [
       {
         title: "Custom Network Video Recorder (NVR)",
         date: "November 2025",
@@ -64,6 +65,29 @@ export default function Resume() {
         description: "Implemented an assistive device utilizing an ESP32-CAM and Roboflow OCR to translate physical Braille characters into real-time audio feedback."
       }
     ],
+    
+    // NEW: Categorized Additional Projects
+    otherProjects: [
+      {
+        category: "Machine Learning & Computer Vision",
+        items: [
+          { title: "Fruit-Detection-Model", description: "A simple Fruit Detection for low-end devices." },
+          { title: "Cat-and-Dog-Model", description: "A model that classifies images of cats and dogs. Built using Python and TensorFlow/Keras." },
+          { title: "Face-and-Age-Detection", description: "A computer vision project focused on detecting faces and estimating age." }
+        ]
+      },
+      {
+        category: "Hardware & Robotics",
+        items: [
+          { title: "ESP32-Balancing-Robot", description: "ESP32 balancing robot that uses an MPU6050 sensor and a PID controller to maintain a vertical position." },
+          { title: "Line-Following-Robot", description: "An Arduino-powered line-following robot using IR sensors to detect track paths and DC motors for navigation." },
+          { title: "Arduino-Persistence-Of-Vison-POV", description: "Arduino POV display that creates moving letters using LEDs and motion." },
+          { title: "ESP32-ECG-Monitor-OLED-Display", description: "A hardware setup utilizing an ESP32 to read electrocardiogram (ECG) data and output the readings to an OLED screen." },
+          { title: "7-Segment-Display-Digital-Clock", description: "A digital clock built using a standard 7-segment hardware display." }
+        ]
+      }
+    ],
+    
     education: {
       degree: "Bachelor's Degree in Computer Engineering",
       school: "Colegio de Montalban, Rodriguez, Rizal",
@@ -81,37 +105,49 @@ export default function Resume() {
         "Quality Control"
       ]
     },
+    
+    // UPDATED: Your actual certificates mapped from the uploaded images
     certifications: [
-      { title: "Placeholder: Embedded Systems Certification", issuer: "Cisco Networking Academy", date: "2024" },
-      { title: "Placeholder: Machine Learning Fundamentals", issuer: "Coursera", date: "2023" },
-      { title: "Placeholder: AWS Cloud Practitioner", issuer: "Amazon Web Services", date: "2025" }
+      { title: "Getting Started", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "Exploring Artificial Intelligence Use Cases and Applications", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "Getting into the Serverless Mindset", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "Machine Learning Terminology and Process", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "Building a Generative AI-Ready Organization", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "AWS Database Migration Service (AWS DMS) Getting Started", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "AWS Cloud Development Kit (CDK) Getting Started", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "AWS Simple Queue Service (SQS) Getting Started", issuer: "AWS Training & Certification", date: "May 20, 2026" },
+      { title: "Amazon SageMaker AI Getting Started", issuer: "AWS Training & Certification", date: "May 19, 2026" },
+      { title: "Responsible Artificial Intelligence Practices", issuer: "AWS Training & Certification", date: "May 19, 2026" },
+      { title: "Fundamentals of Generative AI", issuer: "AWS Training & Certification", date: "May 09, 2026" },
+      { title: "Crypto and Blockchain 101", issuer: "DICT", date: "May 26, 2026" },
+      { title: "Getting Started with UI/UX Design: From Zero to Your First Figma Project", issuer: "DICT", date: "May 20, 2026" },
+      { title: "Online Trends and Netiquette", issuer: "John Paul College", date: "May 18, 2026" },
+      { title: "Your Feed, Your Responsibility: Understanding the Risks and Ethics of AI", issuer: "John Paul College", date: "May 18, 2026" },
+      { title: "A.I.R.P.S. (AI-POWERED REPORTS, PRESENTATIONS, AND SYSTEMS)", issuer: "John Paul College", date: "May 17, 2026" },
+      { title: "Introduction to CSS", issuer: "TESDA", date: "May 15, 2026" },
+      { title: "Mastering the Basics: Number Systems and Conversion Techniques", issuer: "Colegio de Montalban", date: "Nov 16, 2024" },
+      { title: "Data Science and Machine Learning", issuer: "Colegio de Montalban", date: "Nov 9, 2024" },
+      { title: "Introduction to Applied Cybersecurity and Digital Forensics", issuer: "Colegio de Montalban", date: "Oct 30, 2024" },
+      { title: "Facilitator: Shaping a Safer Tomorrow", issuer: "Colegio de Montalban", date: "June 2, 2025" },
+      { title: "General Cleaning Support", issuer: "Colegio de Montalban", date: "March 25, 2024" },
+      { title: "Hour of Code Campaign", issuer: "AI Ready ASEAN / Break The Fake", date: "Aug 2, 2025" },
+      { title: "Capture the Flag Preliminary Round", issuer: "Trend Micro", date: "Aug 22, 2025" },
+      { title: "Programming Languages JAVA: C/C++ / C#", issuer: "Cebu IT-BPM Organization", date: "Oct 21, 2022" }
     ]
   };
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-8 font-sans relative" style={{ backgroundColor: colors.pageBackground, color: colors.dark }}>
-      
-      {/* Main CV Container - Now pure white with a stronger shadow */}
       <div className="max-w-4xl mx-auto shadow-2xl rounded-lg overflow-hidden" style={{ backgroundColor: colors.cardBackground }}>
         
-        {/* Header Section */}
         <header className="p-8 border-b-4" style={{ borderColor: colors.border, backgroundColor: colors.surface }}>
           <h1 className="text-4xl font-bold tracking-tight mb-2 uppercase">{cvData.name}</h1>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium" style={{ color: colors.primary }}>
             {cvData.contact.map((item, idx) => <span key={idx}>{item}</span>)}
           </div>
-          
-          {/* Clickable Links - Icon Removed */}
           <div className="flex flex-wrap gap-x-6 mt-3 text-sm font-bold">
             {cvData.links.map((link, idx) => (
-              <a 
-                key={idx} 
-                href={link.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover:underline transition-all"
-                style={{ color: colors.secondary }}
-              >
+              <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="hover:underline transition-all" style={{ color: colors.secondary }}>
                 {link.label}
               </a>
             ))}
@@ -119,13 +155,11 @@ export default function Resume() {
         </header>
 
         <div className="p-8 space-y-10">
-          {/* Summary Section */}
           <section>
             <h2 className="text-xl font-semibold mb-3 uppercase tracking-wide" style={{ color: colors.primary }}>Summary</h2>
             <p className="leading-relaxed text-sm" style={{ color: colors.dark }}>{cvData.summary}</p>
           </section>
 
-          {/* Experience Section */}
           <section>
             <h2 className="text-xl font-semibold mb-4 uppercase tracking-wide border-b pb-2" style={{ color: colors.primary, borderColor: colors.border }}>Work Experience</h2>
             <div className="space-y-6">
@@ -145,11 +179,10 @@ export default function Resume() {
             </div>
           </section>
 
-          {/* Projects Section */}
           <section>
-            <h2 className="text-xl font-semibold mb-4 uppercase tracking-wide border-b pb-2" style={{ color: colors.primary, borderColor: colors.border }}>Projects</h2>
+            <h2 className="text-xl font-semibold mb-4 uppercase tracking-wide border-b pb-2" style={{ color: colors.primary, borderColor: colors.border }}>Featured Projects</h2>
             <div className="space-y-5">
-              {cvData.projects.map((project, idx) => (
+              {cvData.featuredProjects.map((project, idx) => (
                 <div key={idx}>
                   <div className="flex justify-between items-baseline mb-1">
                     <h3 className="font-bold text-base" style={{ color: colors.dark }}>{project.title}</h3>
@@ -161,7 +194,6 @@ export default function Resume() {
             </div>
           </section>
 
-          {/* Education & Skills Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <section>
               <h2 className="text-xl font-semibold mb-4 uppercase tracking-wide border-b pb-2" style={{ color: colors.primary, borderColor: colors.border }}>Education</h2>
@@ -199,8 +231,15 @@ export default function Resume() {
             </section>
           </div>
 
-          {/* Button to open Certifications Modal */}
-          <div className="pt-6 pb-2 text-center border-t border-dashed" style={{ borderColor: colors.border }}>
+          {/* TWO BUTTONS: Projects and Certifications */}
+          <div className="pt-6 pb-2 flex flex-col sm:flex-row justify-center gap-4 border-t border-dashed" style={{ borderColor: colors.border }}>
+            <button 
+              onClick={() => setShowProjects(true)}
+              className="px-6 py-2 rounded font-bold shadow-sm hover:opacity-90 transition-opacity border-2"
+              style={{ borderColor: colors.primary, color: colors.primary, backgroundColor: colors.cardBackground }}
+            >
+              View All Projects
+            </button>
             <button 
               onClick={() => setShowCerts(true)}
               className="px-6 py-2 rounded font-bold shadow-sm hover:opacity-90 transition-opacity"
@@ -209,25 +248,47 @@ export default function Resume() {
               View Certifications
             </button>
           </div>
-
         </div>
       </div>
 
-      {/* Certifications Modal Overlay */}
+      {/* PROJECTS MODAL */}
+      {showProjects && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="max-w-3xl w-full rounded-lg shadow-xl p-8 relative max-h-[90vh] overflow-y-auto" style={{ backgroundColor: colors.cardBackground }}>
+            <button onClick={() => setShowProjects(false)} className="absolute top-4 right-5 text-3xl font-bold hover:opacity-70" style={{ color: colors.primary }}>&times;</button>
+            
+            <h2 className="text-2xl font-bold mb-6 uppercase tracking-wide border-b pb-3" style={{ color: colors.primary, borderColor: colors.border }}>
+              Project Portfolio
+            </h2>
+            
+            <div className="space-y-8">
+              {cvData.otherProjects.map((category, idx) => (
+                <div key={idx}>
+                  <h3 className="text-lg font-bold mb-4 uppercase tracking-wider" style={{ color: colors.secondary }}>{category.category}</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {category.items.map((project, pIdx) => (
+                      <div key={pIdx} className="p-4 rounded border" style={{ borderColor: colors.surface, backgroundColor: '#f9fbfd' }}>
+                        <h4 className="font-bold text-sm mb-2" style={{ color: colors.dark }}>{project.title}</h4>
+                        <p className="text-xs leading-relaxed" style={{ color: colors.primary }}>{project.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-8 text-center">
+              <button onClick={() => setShowProjects(false)} className="px-6 py-2 rounded text-sm font-semibold hover:opacity-90 transition-opacity" style={{ backgroundColor: colors.secondary, color: colors.cardBackground }}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CERTIFICATIONS MODAL */}
       {showCerts && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div 
-            className="max-w-2xl w-full rounded-lg shadow-xl p-8 relative max-h-[90vh] overflow-y-auto" 
-            style={{ backgroundColor: colors.cardBackground }}
-          >
-            {/* Close Button */}
-            <button 
-              onClick={() => setShowCerts(false)} 
-              className="absolute top-4 right-5 text-3xl font-bold hover:opacity-70"
-              style={{ color: colors.primary }}
-            >
-              &times;
-            </button>
+          <div className="max-w-2xl w-full rounded-lg shadow-xl p-8 relative max-h-[90vh] overflow-y-auto" style={{ backgroundColor: colors.cardBackground }}>
+            <button onClick={() => setShowCerts(false)} className="absolute top-4 right-5 text-3xl font-bold hover:opacity-70" style={{ color: colors.primary }}>&times;</button>
             
             <h2 className="text-2xl font-bold mb-6 uppercase tracking-wide border-b pb-3" style={{ color: colors.primary, borderColor: colors.border }}>
               Certifications & Licenses
@@ -236,23 +297,17 @@ export default function Resume() {
             <div className="space-y-5">
               {cvData.certifications.map((cert, idx) => (
                 <div key={idx} className="pb-4 border-b last:border-b-0 last:pb-0" style={{ borderColor: colors.surface }}>
-                  <h3 className="font-bold text-lg" style={{ color: colors.dark }}>{cert.title}</h3>
-                  <div className="flex justify-between items-center text-sm mt-1">
+                  <h3 className="font-bold text-lg leading-tight" style={{ color: colors.dark }}>{cert.title}</h3>
+                  <div className="flex justify-between items-center text-sm mt-2">
                     <span className="font-medium" style={{ color: colors.primary }}>{cert.issuer}</span>
-                    <span style={{ color: colors.secondary }}>{cert.date}</span>
+                    <span className="whitespace-nowrap ml-2" style={{ color: colors.secondary }}>{cert.date}</span>
                   </div>
                 </div>
               ))}
             </div>
             
             <div className="mt-8 text-center">
-              <button 
-                onClick={() => setShowCerts(false)}
-                className="px-6 py-2 rounded text-sm font-semibold hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: colors.secondary, color: colors.cardBackground }}
-              >
-                Close
-              </button>
+              <button onClick={() => setShowCerts(false)} className="px-6 py-2 rounded text-sm font-semibold hover:opacity-90 transition-opacity" style={{ backgroundColor: colors.secondary, color: colors.cardBackground }}>Close</button>
             </div>
           </div>
         </div>
